@@ -38,7 +38,7 @@ import java.io.PrintWriter;
 
 public class BlurLayer {
     private static final String TAG = "BlurLayer";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private SurfaceControl mBlurSurface;
     private int mLayer = -1;
     private float mAlpha = 0;

@@ -195,7 +195,7 @@ public class LiveLockScreenController {
 
         @Override
         public void slideLockscreenIn() {
-            if (mPanelView.mShowingExternalKeyguard) {
+            if (mLlsHasFocus) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -259,6 +259,10 @@ public class LiveLockScreenController {
         // Ensure we reset visibility when keyguard is dismissed
         mBar.setStatusBarViewVisibility(true);
         mBar.getScrimController().forceHideScrims(false);
+    }
+
+    public boolean getLiveLockScreenHasFocus() {
+        return mLlsHasFocus;
     }
 
     private Runnable mAddNewLiveLockScreenRunnable = new Runnable() {

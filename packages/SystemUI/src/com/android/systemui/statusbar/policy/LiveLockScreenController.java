@@ -166,7 +166,6 @@ public class LiveLockScreenController {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mBar.showKeyguard();
                         mBar.startActivityDismissingKeyguard(intent, false, true, true,
                                 null);
                     }

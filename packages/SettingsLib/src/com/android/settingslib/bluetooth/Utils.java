@@ -7,7 +7,7 @@ import com.android.settingslib.R;
 
 public class Utils {
     public static final boolean V = false; // verbose logging
-    public static final boolean D = true;  // regular logging
+    public static final boolean D = false; // regular logging
 
     private static ErrorListener sErrorListener;
 

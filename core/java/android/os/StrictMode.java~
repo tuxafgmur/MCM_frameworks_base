@@ -1887,10 +1887,10 @@ public final class StrictMode {
                 int start = p.dataPosition();
                 violations.get(i).writeToParcel(p, 0 /* unused flags? */);
                 int size = p.dataPosition()-start;
-//                 if (size > 10*1024) {
-//                     Slog.d(TAG, "Wrote violation #" + i + " of " + violations.size() + ": "
-//                             + (p.dataPosition()-start) + " bytes");
-//                 }
+                if (size > 10*1024) {
+                    Slog.d(TAG, "Wrote violation #" + i + " of " + violations.size() + ": "
+                            + (p.dataPosition()-start) + " bytes");
+                }
             }
             if (LOG_V) Log.d(TAG, "wrote violations to response parcel; num=" + violations.size());
             violations.clear(); // somewhat redundant, as we're about to null the threadlocal
@@ -1940,7 +1940,7 @@ public final class StrictMode {
                         + " front=" + front);
                 return;
             }
-            //info.crashInfo.stackTrace += "# via Binder call with stack:\n" + ourStack;
+            info.crashInfo.stackTrace += "# via Binder call with stack:\n" + ourStack;
             BlockGuard.Policy policy = BlockGuard.getThreadPolicy();
             if (policy instanceof AndroidBlockGuardPolicy) {
                 ((AndroidBlockGuardPolicy) policy).handleViolationWithTimingAttempt(info);
@@ -2438,16 +2438,16 @@ public final class StrictMode {
             dest.writeString(broadcastIntentAction);
             dest.writeStringArray(tags);
             int total = dest.dataPosition()-start;
-//             if (total > 10*1024) {
-//                 Slog.d(TAG, "VIO: policy=" + policy + " dur=" + durationMillis
-//                         + " numLoop=" + violationNumThisLoop
-//                         + " anim=" + numAnimationsRunning
-//                         + " uptime=" + violationUptimeMillis
-//                         + " numInst=" + numInstances);
-//                 Slog.d(TAG, "VIO: action=" + broadcastIntentAction);
-//                 Slog.d(TAG, "VIO: tags=" + Arrays.toString(tags));
-//                 Slog.d(TAG, "VIO: TOTAL BYTES WRITTEN: " + (dest.dataPosition()-start));
-//             }
+            if (total > 10*1024) {
+                Slog.d(TAG, "VIO: policy=" + policy + " dur=" + durationMillis
+                        + " numLoop=" + violationNumThisLoop
+                        + " anim=" + numAnimationsRunning
+                        + " uptime=" + violationUptimeMillis
+                        + " numInst=" + numInstances);
+                Slog.d(TAG, "VIO: action=" + broadcastIntentAction);
+                Slog.d(TAG, "VIO: tags=" + Arrays.toString(tags));
+                Slog.d(TAG, "VIO: TOTAL BYTES WRITTEN: " + (dest.dataPosition()-start));
+            }
         }
 
 
